@@ -1,0 +1,109 @@
+Nume: Barbuceanu
+Prenume: Constantin
+Grupa: 322CB
+PROIECT_POO_CASA_DE_LICITATII
+
+	In realizarea proiectului am creat 13 clase dintre care clasa Test
+este clasa principala din care se incepe executia programului.
+
+	A) Nu am folosit multithreading, dar in rest cred ca am atins celelalte
+puncte din barem, cu exceptia functionalitatii wow care este la latitudinea
+corectorului sa fie decisa daca exista.
+
+	B) Am incercat sa implementez 4 design patternuri, dar pot sa argumentez
+concret doar 3, in speta Singleton, Observer si Command. Astfel, Singleton apare ca
+urmare a faptului ca exista o instanta unica a clasei CasaDeLicitatii pe care
+o returnez si o setez in campul clasei prin apelul metodei statice Instanta.
+Sablonul Observer apare implementat in 2 locuri, intre licitatie si broker si
+intre broker si casa de licitatii. In relatia licitatie-broker, licitatia este
+observator iar brokerul subiect. Astfel se creeaza un vector cu sumele oferite
+de clientii particpanti la licitatie, acesta este transmis brokerului care il
+da mai departe casei de licitatii, urmand sa primeasca inapoi indexul clientului
+cu oferta maxima pentru a il intoarce in metoda executareLicitatie din Licitatie.
+In relatia broker-casa, brokerul este observator, iar casa este subiect. Subiectul
+in ambele relatii notifica observatorul intorcand indexul clientului cu oferta maxima.
+Nu in ultimul rand, sablonul Command este implementat datorita brokerului care
+practic trimite o comanda casei de licitatii dupa primirea vectorului de oferte,
+solicitand casei indexul clientului cu oferta maxima.
+
+	C) Am folosit genericitate, deoarece am folosit ArrayListuri ca sa stochez, de
+exemplu, listele casei de licitatii: listaProduse, listaClienti, listaLicitatiiActive,
+listaProduseDeInserat. Am mai folosit chiar si pe parcurs in diverse locuri alte
+ArrayListuri.
+
+	D) Am creat 20 de fisiere test pentru testarea aplicatiei. Astfel am acoperit
+atat punctul de 2p("Testarea aplicatiei cu minim 10 scenarii") si unit testing de 0.5p
+("Cel putin 10 unit teste pentru functionalitatile majore ale aplicatiei").
+NOTA: Dimensiunea ultimului fisier de output pentru inputul 20 ajunge la aprox. 4.5MB.
+
+	Structura unui fisier de input este urmatoarea:
+	
+	***************************************************
+	nrClienti
+	nrBrokeri
+	nrProduse
+	nrLicitatii
+	nrProduseDeInserat
+	-----De aici incep clientii, care au datele ordonate astfel:
+	id nrParticipari nrLicCastigate nume adresa tip_persoana data_nasterii(pt. fizica) tip_firma(pt. juridica) capital_social(pt_juridica)
+	-----De aici incep produsele initiale, care au datele ordonate astfel:
+	id nume_produs an tip_produs material(pt. bijuterie) piatraPretioasa(pt. bijuterie) nume_pictor(pt. tablou) tip_culoare(pt_tablou) tip(pt. mobila) material(pt. mobila)
+	-----De aici incep licitatiile
+	id nrParticipanti nrPasiMaxim
+	***************************************************
+	
+	E) Folosesc conceptele POO, incapsulare, mostenire, polimorfism
+	Mostenirea si polimorfismul se vad in: 
+		Produs
+			-> Tablou
+			-> Bijuterie
+			-> Mobila
+		Angajat
+			-> Client
+			-> Administrator
+		Client
+			-> PersoanaFizica
+			-> PersoanaJuridica
+	Incapsularea se vede prin faptul ca toate campurile claselor sunt private si am geteri si seteri.
+	
+	F) clean code(0.5p) - eu cred ca da
+	
+	G) early bird(0.5p) - da
+	
+	H) functionalitate wow - ?
+	
+	
+OBSERVATII IMPORTANTE !!!
+-------------------------
+	*In scrierea proiectului am folosit de mai multe ori 
+java.util.Random si java.util.Math. Din prima clasa am folosit metoda
+nextInt(nr) din a doua clasa metoda statica Math.random(). Prima
+returneaza un numar intreg intre 0 si nr-1, a doua un numar real
+intre 0 si 1. Am folosit random ca sa aleg clientii participanti
+la licitatie, sau ca sa generez aleator oferta de la fiecare pas
+pentru fiecare client. Am mai folosit random ca sa obtin aleator
+numarul unei licitatii dupa care sa inserez un produs prin administrator.
+Oferta unui client se calculeaza cu formula:
+
+Math.random() * (margineSuperioara - margineInferioara) + margineInferioara
+mInf = pretul maxim de la pasul trecut
+mSup = pretul maxim pe care il poate plati clientul
+
+	*Am 20 de fisiere de input si unul de output. Fiecare fisier de input
+are continut diferit. Ca sa rulez programul pe fiecare input trebuie sa schimb
+pentru fiecare rulare a unui test parametrul din new Fileul() din tryul din main.
+Parametrul este un string de forma "Tests/date(numar).in".
+
+	*In cadrul rularii programului se foloseste si consola stdin/stdout.
+Daca nrProduseDeInserat este mai mare decat 0, atunci inseamna ca administratorul
+va trebui sa insereze produse. Campul momentulInserarii din Produs zice dupa
+care licitatie sa se insereze. Poate fi -1, caz in care stim ca face parte
+din lista produselor initiale. De la consola se va cere sa se introduca datele
+specifice produsului respectiv dupa licitatia curenta.
+
+	*Pentru fiecare licitatie se alege tot cu random produsul licitat.
+	
+	*Stiu ca se mai poate imbunatatii :) .
+
+	*Pentru fiecare licitatie se alege tot cu random produsul licitat.
+	*Stiu ca se mai poate imbunatati :).
